@@ -11,7 +11,7 @@ class IMode {
 public:
   virtual void setup() = 0;
   virtual void loop() = 0;
-  virtual ~IMode() {}
+  virtual ~IMode() = default;
 };
 
 #endif //ESP32TEST_IMODE_H

@@ -4,6 +4,8 @@
 
 #include "mode_clock_server.h"
 
+void mode_clock_server::setup(){}
+
 void mode_clock_server::loop(){
 
 }

@@ -9,9 +9,11 @@
 
 class wifi_manager {
 public:
-    void connectSTA(const char* ssid, const char* pass); // join existing network (2.3)
-    void startAP(const char* ssid, const char* pass);    // become access point (2.2)
-    bool isConnected();
+    static void connectSTA(const char* ssid, const char* pass);
+    static void promptAndConnect();
+
+    static void startAP(const char* ssid, const char* pass);
+    static bool isConnected();
 };
 
 extern wifi_manager wifiManager;

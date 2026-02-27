@@ -10,6 +10,6 @@ void mode_serial::setup(){
 }
 
 void mode_serial::loop(){
-    Serial.printlf("Time: " + String(millis()) + "ms\n");
+    Serial.print("Time: " + String(millis()) + "ms\n");
     delay(1000);
 }

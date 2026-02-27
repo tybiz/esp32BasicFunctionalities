@@ -10,16 +10,27 @@ void setup() {
 }
 
 void loop() {
-    if (init_now && Serial.available()){
-        String cmd = Serial.readStringUntil('\n');
-        cmd.trim();
-        try {
-            manager.switchMode(cmd);
-            init_now = false;
-            manager.start();
-        }
-        catch (...) {
-            Serial.println("Error reading command!");
+    while (init_now) {
+        if (Serial.available()){
+            String cmd = "";
+            while (true) {
+                if (Serial.available()) {
+                    char c = Serial.read();
+                    if (c == '\n') break;
+                    cmd += c;
+                    Serial.print(c);
+                }
+            }
+            Serial.println();
+            cmd.trim();
+            try {
+                manager.switchMode(cmd);
+                init_now = false;
+                manager.start();
+            }
+            catch (...) {
+                Serial.println("Error reading command!");
+            }
         }
     }
     manager.tick();

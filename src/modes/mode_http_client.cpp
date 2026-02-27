@@ -4,6 +4,8 @@
 
 #include "mode_http_client.h"
 
+void mode_http_client::setup(){}
+
 void mode_http_client::loop(){
 
 }

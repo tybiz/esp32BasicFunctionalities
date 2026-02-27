@@ -2,16 +2,17 @@
 // Created by Tymoteusz Biziuk on 27/02/2026.
 //
 
-#ifndef ESP32TEST_MODE_MANAGER_H
-#define ESP32TEST_MODE_MANAGER_H
+#pragma once
 #include <WString.h>
-
+#include "IMode.h"
 
 class mode_manager {
 public:
-    void switchMode(const String & cmd);void tick();
-    void start();
+    void switchMode(const String& cmd);
+    void tick() const;
+    void start() const;
+private:
+    IMode* _current = nullptr;
 };
 
-
-#endif //ESP32TEST_MODE_MANAGER_H
+extern mode_manager modeManager;

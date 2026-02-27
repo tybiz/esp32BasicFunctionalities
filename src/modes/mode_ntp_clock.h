@@ -7,9 +7,13 @@
 
 
 #include <IMode.h>
+#include <time.h>
 
 class mode_ntp_clock final : public IMode {
     void setup() override;
+
+    static void get_current_time(const tm *&ti);
+
     void loop() override;
 };
 
