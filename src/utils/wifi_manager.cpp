@@ -42,3 +42,7 @@ bool wifi_manager::isConnected() {
     return WiFi.status() == WL_CONNECTED;
 }
 
+void wifi_manager::printIP() {
+    Serial.println("IP: " + WiFi.localIP().toString());
+}
+

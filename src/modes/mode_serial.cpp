@@ -5,11 +5,9 @@
 #include "mode_serial.h"
 #include <HardwareSerial.h>
 
-void mode_serial::setup(){
-    //Serial prt is already initialized in main.cpp
-}
+void mode_serial::setup(){}
 
-void mode_serial::loop(){
+void mode_serial::loop() {
     Serial.print("Time: " + String(millis()) + "ms\n");
     delay(1000);
 }

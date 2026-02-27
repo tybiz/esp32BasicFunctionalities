@@ -12,8 +12,10 @@ public:
     static void connectSTA(const char* ssid, const char* pass);
     static void promptAndConnect();
 
-    static void startAP(const char* ssid, const char* pass);
+    static void startAP(const char* ssid = "ap11", const char* pass = "haslo123");
     static bool isConnected();
+
+    static void printIP();
 };
 
 extern wifi_manager wifiManager;

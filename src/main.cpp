@@ -1,8 +1,10 @@
 #include <Arduino.h>
 #include <mode_manager.h>
+#include <WebServer.h>
 
 mode_manager manager;
 bool init_now = true;
+
 
 void setup() {
     Serial.begin(115200);
@@ -16,12 +18,11 @@ void loop() {
             while (true) {
                 if (Serial.available()) {
                     char c = Serial.read();
-                    if (c == '\n') break;
+                    if (c == '\n'){ Serial.print(c);  break; };
                     cmd += c;
                     Serial.print(c);
                 }
             }
-            Serial.println();
             cmd.trim();
             try {
                 manager.switchMode(cmd);
@@ -29,7 +30,8 @@ void loop() {
                 manager.start();
             }
             catch (...) {
-                Serial.println("Error reading command!");
+                Serial.println("Error reading command!\n");
+                Serial.printf("Select mode:  ");
             }
         }
     }

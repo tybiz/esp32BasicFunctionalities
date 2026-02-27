@@ -23,7 +23,6 @@ void mode_manager::switchMode(const String& cmd) {
     else if (cmd == "httpserver")  _current = new mode_http_server();
     else if (cmd == "clockserver") _current = new mode_clock_server();
     else {
-        Serial.println("Unknown mode: " + cmd);
         throw std::runtime_error("Unknown mode!");
     };
 }

@@ -5,13 +5,14 @@
 #include "mode_bme_680.h"
 
 #include <HardwareSerial.h>
+#include <utils/bme_680.h>
 
 void mode_bme_680::setup() {
-    //Setup for bme_680 here
+    bme680_sensor::begin();
 }
 
 void mode_bme_680::loop(){
-    // Get readings
-    Serial.printf("temp:%.2f,pressure:%.2f,humidity:%.2f,\n", 0.1 , 0.1, 0.1 );
+    auto [temperature, pressure, humidity] = bme680_sensor::read();
+    Serial.printf("temp:%.2f,pressure:%.2f,humidity:%.2f,\n", temperature , pressure, humidity );
     delay(1000);
 }
