@@ -22,6 +22,8 @@ void mode_manager::switchMode(const String& cmd) {
     else if (cmd == "httpclient")  _current = new mode_http_client();
     else if (cmd == "httpserver")  _current = new mode_http_server();
     else if (cmd == "clockserver") _current = new mode_clock_server();
+    else if (cmd == "ap")          _current = ;
+    else if (cmd == "help")        Serial.println("Available modes: sinus, serial, bme, ntp, httpclient, httpserver, clockserver");
     else {
         throw std::runtime_error("Unknown mode!");
     };
