@@ -14,10 +14,10 @@ static WebServer server(80);
 void mode_http_server::setup() {
     wifi_manager::promptAndConnect();
 
-    bme680_sensor::begin();
+    bme680.begin();
 
     server.on("/", []() {
-        auto [temperature, pressure, humidity] = bme680_sensor::read();
+        auto [temperature, pressure, humidity] = bme680.read();
         server.send(200, "text/plain",
              "temp:" + String(temperature) + ",press:" + String(pressure) + ",hum:" + String(humidity));
     });

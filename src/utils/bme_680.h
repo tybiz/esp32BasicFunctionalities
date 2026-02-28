@@ -5,7 +5,7 @@
 #ifndef ESP32TEST_BME_680_H
 #define ESP32TEST_BME_680_H
 
-#include <bsec.h>
+#include <Adafruit_BME680.h>
 
 struct SensorData {
     float temperature;
@@ -15,8 +15,11 @@ struct SensorData {
 
 class bme680_sensor {
 public:
-    static bool begin();
-    static SensorData read();
+    bool begin();
+    SensorData read();
+private:
+    Adafruit_BME680 _bme;
+
 };
 
 extern bme680_sensor bme680;
