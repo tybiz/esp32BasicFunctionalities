@@ -22,7 +22,7 @@ void loop() {
             init_now = false;
             manager.start();
         } catch (const std::exception &e) {
-            Serial.print(e.what());ijku
+            Serial.print(e.what());
         }
     }
     manager.tick();
