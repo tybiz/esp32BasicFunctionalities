@@ -2,6 +2,7 @@
 
 #include <HardwareSerial.h>
 #include <stdexcept>
+#include <modes/mode_ap.h>
 
 #include "modes/mode_sinus.h"
 #include "modes/mode_serial.h"
@@ -22,11 +23,12 @@ void mode_manager::switchMode(const String& cmd) {
     else if (cmd == "httpclient")  _current = new mode_http_client();
     else if (cmd == "httpserver")  _current = new mode_http_server();
     else if (cmd == "clockserver") _current = new mode_clock_server();
-    else if (cmd == "ap")          _current = ;
-    else if (cmd == "help")        Serial.println("Available modes: sinus, serial, bme, ntp, httpclient, httpserver, clockserver");
-    else {
-        throw std::runtime_error("Unknown mode!");
-    };
+    else if (cmd == "ap")          _current = new mode_ap();
+    else if (cmd == "help") {
+        Serial.println("Available modes: sinus, serial, bme, ntp, httpclient, httpserver, clockserver, ap");
+        throw std::runtime_error("");
+    }
+    else                           throw std::runtime_error("Unknown mode!");
 }
 
 void mode_manager::tick() const {

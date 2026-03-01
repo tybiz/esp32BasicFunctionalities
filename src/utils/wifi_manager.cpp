@@ -4,19 +4,22 @@
 
 #include "wifi_manager.h"
 
+#include "input.h"
+
 
 wifi_manager wifiManager;
 
 void wifi_manager::promptAndConnect() {
-    Serial.println("Enter SSID:");
-    while (!Serial.available()) {}
-    String ssid = Serial.readStringUntil('\n');
-    ssid.trim();
-
-    Serial.println("Enter password:");
-    while (!Serial.available()) {}
-    String pass = Serial.readStringUntil('\n');
-    pass.trim();
+    const String ssid = inputHandler::echo_input("Enter URL: ");
+    String pass;
+    while (true) {
+        if (Serial.available()) {
+            char c = Serial.read();
+            if (c == '\n'){ Serial.print("*");  break; };
+            pass += c;
+            Serial.print(c);
+        }
+    }
 
     connectSTA(ssid.c_str(), pass.c_str());
 }

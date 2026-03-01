@@ -6,19 +6,14 @@
 
 #include <utils/wifi_manager.h>
 #include <HTTPClient.h>
+#include <utils/input.h>
 
 String url;
 
 void mode_http_client::setup() {
     wifi_manager::promptAndConnect();
-    while (true) {
-        if (Serial.available()) {
-            char c = Serial.read();
-            if (c == '\n'){ Serial.print(c);  break; };
-            url += c;
-            Serial.print(c);
-        }
-    }
+    Serial.printf("Enter URL: ");
+    url = inputHandler::echo_input("Enter URL: ");
 }
 
 void mode_http_client::loop(){

@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <mode_manager.h>
 #include <WebServer.h>
+#include <utils/input.h>
 
 mode_manager manager;
 bool init_now = true;
@@ -8,31 +9,20 @@ bool init_now = true;
 
 void setup() {
     Serial.begin(115200);
-    Serial.printf("Select mode:  ");
 }
 
 void loop() {
+    delay(100);
     while (init_now) {
-        if (Serial.available()){
-            String cmd = "";
-            while (true) {
-                if (Serial.available()) {
-                    char c = Serial.read();
-                    if (c == '\n'){ Serial.print(c);  break; };
-                    cmd += c;
-                    Serial.print(c);
-                }
-            }
-            cmd.trim();
-            try {
-                manager.switchMode(cmd);
-                init_now = false;
-                manager.start();
-            }
-            catch (...) {
-                Serial.println("Error reading command!\n");
-                Serial.printf("Select mode:  ");
-            }
+        String cmd = "";
+        cmd = inputHandler::echo_input("Select mode: ");
+        cmd.trim();
+        try {
+            manager.switchMode(cmd);
+            init_now = false;
+            manager.start();
+        } catch (const std::exception &e) {
+            Serial.print(e.what());ijku
         }
     }
     manager.tick();
