@@ -1,9 +1,9 @@
-//
-// Created by Tymoteusz Biziuk on 27/02/2026.
-//
+#pragma once
+#include <Wire.h>
+#include <rgb_lcd.h>
 
-#ifndef ESP32TEST_LCD_DISPLAY_H
-#define ESP32TEST_LCD_DISPLAY_H
+#define LCD_COLS 16
+#define LCD_ROWS 2
 
 class lcd {
 public:
@@ -11,8 +11,8 @@ public:
     void clear();
     void print(int col, int row, const char* text);
 
+private:
+    rgb_lcd _lcd;
 };
 
 extern lcd lcd_display;
-
-#endif //ESP32TEST_LCD_DISPLAY_H

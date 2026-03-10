@@ -16,7 +16,7 @@ void ntp::get_current_time(tm &ti) {
 }
 
 void ntp::config_local_time() {
-    configTime(3600, 3600, "pl.pool.ntp.org");
+    configTime(3600, 0, "pl.pool.ntp.org");
     tm ti{};
     while (!getLocalTime(&ti)) {
         delay(500);

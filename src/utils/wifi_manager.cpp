@@ -10,16 +10,10 @@
 wifi_manager wifiManager;
 
 void wifi_manager::promptAndConnect() {
-    const String ssid = inputHandler::echo_input("Enter URL: ");
-    String pass;
-    while (true) {
-        if (Serial.available()) {
-            char c = Serial.read();
-            if (c == '\n'){ Serial.print("*");  break; };
-            pass += c;
-            Serial.print(c);
-        }
-    }
+    const String ssid = inputHandler::echo_input("Enter SSID: ");
+    Serial.println(ssid);
+    String pass = inputHandler::echo_input("Enter password: ");
+    Serial.println(pass);
 
     connectSTA(ssid.c_str(), pass.c_str());
 }

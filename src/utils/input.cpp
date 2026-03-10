@@ -18,5 +18,6 @@ String inputHandler::echo_input(const String& prompt) {
             Serial.print(c);
         }
     }
+    inp.trim();
     return inp;
 }

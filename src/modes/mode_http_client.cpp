@@ -24,4 +24,5 @@ void mode_http_client::loop(){
     if (code == 200) Serial.println(http.getString());
     else Serial.printf("Error: %s\n", HTTPClient::errorToString(code).c_str());
     http.end();
+    delay(5000);
 }
